@@ -1,8 +1,7 @@
 defmodule TreeStorybook.LiveComponent do
-  use PhxLiveStorybook.Story, :live_component
+  use PhoenixStorybook.Story, :live_component
   def component, do: LiveComponent
 
-  def description, do: "live component description"
   def container, do: :iframe
 
   def variations do

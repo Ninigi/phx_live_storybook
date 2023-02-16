@@ -1,30 +1,32 @@
-# PhxLiveStorybook
+# PhoenixStorybook
 
-![github](https://github.com/phenixdigital/phx_live_storybook/actions/workflows/elixir.yml/badge.svg)
-[![codecov](https://codecov.io/gh/phenixdigital/phx_live_storybook/branch/main/graph/badge.svg)](https://codecov.io/gh/phenixdigital/phx_live_storybook)
-[![GitHub release](https://img.shields.io/github/v/release/phenixdigital/phx_live_storybook.svg)](https://github.com/phenixdigital/phx_live_storybook/releases/)
+[![github](https://github.com/phenixdigital/phoenix_storybook/actions/workflows/elixir.yml/badge.svg)](https://github.com/phenixdigital/phoenix_storybook/actions/workflows/elixir.yml)
+[![codecov](https://codecov.io/gh/phenixdigital/phoenix_storybook/branch/main/graph/badge.svg)](https://codecov.io/gh/phenixdigital/phoenix_storybook)
+[![GitHub release](https://img.shields.io/github/v/release/phenixdigital/phoenix_storybook.svg)](https://github.com/phenixdigital/phoenix_storybook/releases/)
 
-📚 [Documentation](https://hexdocs.pm/phx_live_storybook)
+📚 [Documentation](https://hexdocs.pm/phoenix_storybook)
 &nbsp; - &nbsp;
 🔎 [Demo](http://phx-live-storybook-sample.fly.dev/storybook)
 &nbsp; - &nbsp;
-🎓 [Sample repository](https://github.com/phenixdigital/phx_live_storybook_sample)
+🎓 [Sample repository](https://github.com/phenixdigital/phoenix_storybook_sample)
+&nbsp; - &nbsp;
+🍿 [Getting started video](https://www.youtube.com/watch?v=MTE7dLhkQ8Q)
 
 <!-- MDOC !-->
 
-PhxLiveStorybook provides a [_storybook-like_](https://storybook.js.org) UI interface for your
+PhoenixStorybook provides a [_storybook-like_](https://storybook.js.org) UI interface for your
 Phoenix LiveView components.
 
 - Explore all your components, and showcase them with different variations.
 - Browse your component's documentation, with their supported attributes.
 - Learn how components behave by using an interactive playground.
 
-![screenshot](https://github.com/phenixdigital/phx_live_storybook/raw/main/screenshots/screenshot-01.jpg)
-![screenshot](https://github.com/phenixdigital/phx_live_storybook/raw/main/screenshots/screenshot-02.jpg)
+![screenshot](https://github.com/phenixdigital/phoenix_storybook/raw/main/screenshots/screenshot-01.jpg)
+![screenshot](https://github.com/phenixdigital/phoenix_storybook/raw/main/screenshots/screenshot-02.jpg)
 
 ## How does it work?
 
-PhxLiveStorybook is mounted in your application router and serves its UI at the mounting point of
+PhoenixStorybook is mounted in your application router and serves its UI at the mounting point of
 your choice.
 
 It performs automatic discovery of your storybook content under a specified folder (`:content_path`)
@@ -35,23 +37,23 @@ Three kinds of stories are supported:
 
 - `component` to describe your stateless function components or your live_components.
 - `page` to write & document UI guidelines, or whatever content you want.
-- `example` to show how your components can be used and mixed in real UI pages. (not available now)
+- `example` to show how your components can be used and mixed in real UI pages.
 
 ## Installation
 
-To start using `PhxLiveStorybook` in your phoenix application you will need to follow these steps:
+To start using `PhoenixStorybook` in your phoenix application you will need to follow these steps:
 
-1. Add the `phx_live_storybook` dependency
+1. Add the `phoenix_storybook` dependency
 2. Run the generator
 
-### 1. Add the `phx_live_storybook` dependency
+### 1. Add the `phoenix_storybook` dependency
 
 Add the following to your mix.exs and run mix deps.get:
 
 ```elixir
 def deps do
   [
-    {:phx_live_storybook, "~> 0.4.0"}
+    {:phoenix_storybook, "~> 0.5.0"}
   ]
 end
 ```
@@ -76,14 +78,14 @@ Of all config settings, only the `:otp_app`, and `:content_path` keys are mandat
 ```elixir
 # lib/my_app_web/storybook.ex
 defmodule MyAppWeb.Storybook do
-  use PhxLiveStorybook,
+  use PhoenixStorybook,
     # OTP name of your application.
     otp_app: :my_app,
 
     # Path to your storybook stories (required).
     content_path: Path.expand("../storybook", __DIR__),
 
-    # Path to your JS asset, which will be loaded just before PhxLiveStorybook's own
+    # Path to your JS asset, which will be loaded just before PhoenixStorybook's own
     # JS. It's mainly intended to define your LiveView Hooks in `window.storybook.Hooks`.
     # Remote path (not local file-system path) which means this file should be served
     # by your own application endpoint.
@@ -139,9 +141,8 @@ config :my_app, MyAppWeb.Storybook,
   content_path: "overridden/content/path"
 ```
 
-ℹ️ Learn more on theming components in the [theming guide](guides/theming.md).
-
-ℹ️ Learn more on icons in the [icons](guides/icons.md) guide.
+ℹ️ Learn more on theming components in the [theming guide](guides/theming.md), on icons in the
+[icons](guides/icons.md) guide.
 
 <!-- MDOC !-->
 
@@ -149,11 +150,11 @@ config :my_app, MyAppWeb.Storybook,
 
 We would love your PRs!
 
-1. Pull down phx_live_storybook to a directory next to your project (`../phx_live_storybook`).
+1. Pull down phoenix_storybook to a directory next to your project (`../phoenix_storybook`).
 2. Change your mix file to point to this directory:
 
 ```elixir
-{:phx_live_storybook, path: "../phx_live_storybook"},
+{:phoenix_storybook, path: "../phoenix_storybook"},
 ```
 
 3. Run dev.storybook mix task from your project

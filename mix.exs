@@ -1,19 +1,19 @@
-defmodule PhxLiveStorybook.MixProject do
+defmodule PhoenixStorybook.MixProject do
   use Mix.Project
 
-  @version "0.4.2"
+  @version "0.5.0"
 
   def project do
     [
-      app: :phx_live_storybook,
+      app: :phoenix_storybook,
       version: @version,
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       config_path: "./config/config.exs",
       elixirc_paths: elixirc_paths(Mix.env()),
-      name: "phx_live_storybook",
+      name: "phoenix_storybook",
       description: "A pluggable storybook for your LiveView components.",
-      source_url: "https://github.com/phenixdigital/phx_live_storybook",
+      source_url: "https://github.com/phenixdigital/phoenix_storybook",
       aliases: aliases(),
       deps: deps(),
       package: package(),
@@ -23,6 +23,10 @@ defmodule PhxLiveStorybook.MixProject do
         coveralls: :test,
         "coveralls.lcov": :test,
         coverage: :test
+      ],
+      dialyzer: [
+        plt_add_apps: [:mix, :jason, :earmark],
+        plt_file: {:no_warn, ".plts/storybook.plt"}
       ]
     ]
   end
@@ -30,7 +34,7 @@ defmodule PhxLiveStorybook.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {PhxLiveStorybook.Application, []},
+      mod: {PhoenixStorybook.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -41,27 +45,30 @@ defmodule PhxLiveStorybook.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:phoenix, "~> 1.7.0-rc.2", override: true},
       {:phoenix_live_view, "~> 0.18"},
+      {:phoenix_view, "~> 2.0"},
       {:makeup_eex, "~> 0.1.0"},
       {:heroicons, "~> 0.5", optional: true},
       {:jason, "~> 1.3", optional: true},
-      {:earmark, "~> 1.4", runtime: false},
+      {:earmark, "~> 1.4"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
-      {:floki, "~> 0.33.0", only: :test},
-      {:mox, "~> 1.0", only: :test}
+      {:floki, "~> 0.34.0", only: :test},
+      {:mox, "~> 1.0", only: :test},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
   defp docs do
     [
-      main: "PhxLiveStorybook",
+      main: "PhoenixStorybook",
       source_ref: "v#{@version}",
-      source_url: "https://github.com/phenixdigital/phx_live_storybook",
+      source_url: "https://github.com/phenixdigital/phoenix_storybook",
       extra_section: "GUIDES",
       extras: extras(),
-      nest_modules_by_prefix: [PhxLiveStorybook]
+      nest_modules_by_prefix: [PhoenixStorybook]
     ]
   end
 
@@ -80,7 +87,7 @@ defmodule PhxLiveStorybook.MixProject do
       maintainers: ["Christian Blavier"],
       files: ~w(mix.exs priv lib guides README.md LICENSE.md CHANGELOG.md CONTRIBUTING.md),
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/phenixdigital/phx_live_storybook"}
+      links: %{"GitHub" => "https://github.com/phenixdigital/phoenix_storybook"}
     ]
   end
 

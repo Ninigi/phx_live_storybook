@@ -1,8 +1,8 @@
 {
-  "name": "phx_live_storybook",
+  "name": "phoenix_storybook",
   "version": "1.0.0",
-  "description": "PhxLiveStorybook assets",
-  "main": "./assets/js/phx_live_storybook.js",
+  "description": "PhoenixStorybook assets",
+  "main": "./assets/js/phoenix_storybook.js",
   "scripts": {
     "build:css": "tailwindcss --minify -i css/app.css -o ../priv/static/css/app.css",
     "build:fonts_css": "tailwindcss --minify -i css/fonts.css -o ../priv/static/css/fonts.css",
@@ -17,12 +17,12 @@
   "license": "ISC",
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
-    "esbuild": "^0.15.9",
+    "esbuild": "^0.17.8",
     "npm-run-all": "^4.1.5",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view",
-    "tailwindcss": "^3.1.8",
+    "tailwindcss": "^3.2.6",
     "tailwindcss-font-inter": "^3.0.1"
   }
 }

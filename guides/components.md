@@ -1,23 +1,51 @@
 # Component stories
 
-Basic component documentation is in `PhxLiveStorybook.Story`.
+Basic component documentation is in `PhoenixStorybook.Story`.
+
+## Documentation
+
+Component documentation is fetched from your component doc tags:
+
+- For a live_component, fetches `@moduledoc` content.
+- For a function component, fetches `@doc` content from the matching function.
+
+If you are deploying `phoenix_storybook` in production with an Elixir release, make sure your
+doc chunks are not [stripped out from the release.](https://hexdocs.pm/mix/Mix.Tasks.Release.html#module-customization)
+
+```elixir
+releases: [
+  my_app_web: [
+    strip_beams: [
+      keep: ["Docs"]
+    ]
+  ]
+]
+```
 
 ## Variation groups
 
 You may want to present different variations of a component in a single variation block.
-It is possible using `PhxLiveStorybook.VariationGroup`.
+It is possible using `PhoenixStorybook.VariationGroup`.
 
 ## Container
 
 By default, each `variation` is rendered within a `div` in the storybook DOM.
+You can pass additional HTML attributes or extend the class attribute.
+
+```elixir
+# storybook/my_component.story.exs
+defmodule Storybook.MyComponent do
+  use PhoenixStorybook.Story, :component
+  def container, do: {:div, class: "block"}
+end
+```
+
 If you need further _sandboxing_ you can opt in for `iframe` rendering.
 
 ```elixir
 # storybook/my_component.story.exs
 defmodule Storybook.MyComponent do
-  use PhxLiveStorybook.Story, :component
-
-  def function, do: &MyComponent.my_component/1
+  use PhoenixStorybook.Story, :component
   def container, do: :iframe
 end
 ```
@@ -34,7 +62,7 @@ Here is an example defining both:
 
 ```elixir
 defmodule NestedComponent do
-  use PhxLiveStorybook.Story, :component
+  use PhoenixStorybook.Story, :component
   def function, do: &NestedComponent.nested_component/1
 
   def aliases, do: [MyStorybook.Helpers.JSHelpers]
@@ -118,7 +146,7 @@ In template, you can pass some extra attributes to your variation. Just add them
 
 ```elixir
 """
-<.form_for for={:user} let={f}>
+<.form_for :let={f} for={%{}} as={:user}>
   <.lsb-variation form={f}/>
 </.form>
 """
@@ -131,7 +159,7 @@ classes through [JS commands](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveV
 
 ```elixir
 defmodule Storybook.Components.Modal do
-  use PhxLiveStorybook.Story, :component
+  use PhoenixStorybook.Story, :component
 
   def function, do: &Components.Modal.modal/1
 
@@ -160,12 +188,12 @@ end
 Some components don't rely on JS commands but need external assigns, like a modal that takes a
 `show={true}` or `show={false}` assign to manage its visibility state.
 
-`PhxLiveStorybook` handles special `assign` and `toggle` events that you
+`PhoenixStorybook` handles special `assign` and `toggle` events that you
 can leverage on to update some properties that will be passed to your components as _extra assigns_.
 
 ```elixir
 defmodule Storybook.Components.Slideover do
-  use PhxLiveStorybook.Story, :component
+  use PhoenixStorybook.Story, :component
   def function, do: &Components.Slideover.slideover/1
 
   def template do
@@ -259,12 +287,12 @@ your variation.
   },
   slots: [
     """
-    <:col let={user} label="First name">
+    <:col :let={user} label="First name">
       <%= user.first_name %>
     </:col>
     """,
     """
-    <:col let={user} label="Last name">
+    <:col :let={user} label="Last name">
       <%= user.last_name %>
     </:col>
     """

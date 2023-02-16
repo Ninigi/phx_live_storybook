@@ -1,5 +1,6 @@
-defmodule PhxLiveStorybook.PageStub do
-  alias PhxLiveStorybook.Story.{PageBehaviour, StoryBehaviour}
+defmodule PhoenixStorybook.PageStub do
+  import Phoenix.Component
+  alias PhoenixStorybook.Story.{PageBehaviour, StoryBehaviour}
 
   @behaviour StoryBehaviour
   @behaviour PageBehaviour
@@ -8,11 +9,11 @@ defmodule PhxLiveStorybook.PageStub do
   def storybook_type, do: :page
 
   @impl StoryBehaviour
-  def description, do: "description"
+  def doc, do: "description"
 
   @impl PageBehaviour
   def navigation, do: []
 
   @impl PageBehaviour
-  def render(_), do: false
+  def render(assigns), do: ~H""
 end

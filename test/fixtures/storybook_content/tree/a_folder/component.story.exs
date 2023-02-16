@@ -1,7 +1,7 @@
 defmodule TreeStorybook.AFolder.Component do
-  use PhxLiveStorybook.Story, :component
+  use PhoenixStorybook.Story, :component
   def function, do: &Component.component/1
-  def description, do: "Aa component description"
+  def container, do: {:div, class: "block", "data-foo": "bar"}
 
   def variations do
     [
